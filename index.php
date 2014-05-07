@@ -3,7 +3,7 @@
 		<title>Roomate Expense Tracker</title>
 
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
-
+<!-- See I have made the changes -->
 		<style>
 			.btn-custom {
 				background-color: hsl(202, 100%, 16%) !important;
