@@ -1,3 +1,8 @@
+<?php 
+session_start();
+error_reporting(0);
+?>
+
 <html>
 	<head>
 		<title>Roomate Expense Tracker</title>
@@ -24,8 +29,13 @@
 		</style>
 	</head>
 	<body>
-		<form id="loginForm">
+		
+		<form id="loginForm" action="login.php" method="post">
 			<div class="alert alert-danger">
+			<?php foreach ($_SESSION['ERRMSG_ARR'] as $value){
+				echo $value."<br>";
+				
+		}?>
 
 			</div>
 
@@ -40,9 +50,11 @@
 								<fieldset>
 									<div class="form-group">
 										<input type="text" name="username" class="form-control" placeholder="Username" />
+										
 									</div>
 									<div class="form-group">
 										<input type="password" name="password" class="form-control" placeholder="Password" />
+										
 									</div>
 									<!-- Change this to a button or input when using this as a form -->
 									<input type="submit" value="Log In" class="btn btn-primary btn-custom" />
