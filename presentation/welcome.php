@@ -11,7 +11,7 @@ $DOMAIN  = $_SERVER['HTTP_HOST']; //DOMAIN
 
 <html>
 <head>
-   <title>Try Bootstrap Online</title>
+   <title>Admin page</title>
    <link href="../css/bootstrap.min.css" rel="stylesheet">
    <script src="../js/jquery-1.11.1.min.js"></script>
    <script src="../js/bootstrap.min.js"></script>
