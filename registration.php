@@ -1,6 +1,11 @@
 <?php 
 session_start();
 error_reporting(0);
+$DOMAIN  = $_SERVER['HTTP_HOST']; //DOMAIN
+	define("SITEURL","http://$DOMAIN/ExpenseTracker");
+//	define("AABSPATH",ABSPATH."/xome");
+	define("ASITEURL",SITEURL."/index.php");
+	
 ?>
 
 <html>
@@ -66,7 +71,9 @@ error_reporting(0);
 									</div>
 									<!-- Change this to a button or input when using this as a form -->
 									<input type="submit" name="submit" value="Register" class="btn btn-primary btn-custom" />
-								</fieldset>
+                                                                        <a href="<?php echo ASITEURL; ?>"><button class="btn btn-primary btn-custom">Login</button></a>
+								
+                                                                </fieldset>
 							</div>
 						</div>
 					</div>
