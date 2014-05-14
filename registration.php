@@ -71,7 +71,7 @@ $DOMAIN  = $_SERVER['HTTP_HOST']; //DOMAIN
 									</div>
 									<!-- Change this to a button or input when using this as a form -->
 									<input type="submit" name="submit" value="Register" class="btn btn-primary btn-custom" />
-                                                                        <a href="<?php echo ASITEURL; ?>"><button class="btn btn-primary btn-custom">Login</button></a>
+                                                                        <a href="<?php echo ASITEURL; ?>"><button type="button" class="btn btn-success">Login</button></a>
 								
                                                                 </fieldset>
 							</div>
@@ -80,5 +80,6 @@ $DOMAIN  = $_SERVER['HTTP_HOST']; //DOMAIN
 				</div>
 			</div>
 			</h:form>
+                        
 	</body>
 </html>
