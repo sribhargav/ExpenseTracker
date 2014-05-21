@@ -1,52 +1,26 @@
 <?php 
 
-session_start();
-//print_r($_SESSION);
-$DOMAIN  = $_SERVER['HTTP_HOST']; //DOMAIN
-	define("SITEURL","http://$DOMAIN/ExpenseTracker");
-//	define("AABSPATH",ABSPATH."/xome");
-	define("ASITEURL",SITEURL);
+        require '../template/header.php';
 require "../database/db.php";	
 ?>
 
-<html>
-<head>
-   <title>Admin page</title>
-   <link href="../css/bootstrap.min.css" rel="stylesheet">
-   <script src="../js/jquery-1.11.1.min.js"></script>
-   <script src="../js/bootstrap.min.js"></script>
-</head>
-<style>
-    .container,.jumbotron{
-        width:100%;
-        height:100%;
-    }  
-    .form-horizontal{
-        margin-top: 20px;
-       float:left;
-        width:600px;
-    }
-    .col-sm-10,.col-sm-2 control-label{
-        width:300px;
-    }
-</style>
-<body >
-    <div class="container">
-        <div class="jumbotron">
-            
-            <h1><?php echo "Welcome to " . $_SESSION['display_name']; ?> </h1>
-            <div class="col-xs-6 col-md-offset-3" 
-                 style="background-color: #dedef8;width:100%;float:right;box-shadow: 
-                    inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-                <ul class="nav nav-pills">
-                    <li ><a href="<?php echo ASITEURL; ?>/presentation/welcome.php">Home</a></li>
-                    <li><a href="<?php echo ASITEURL; ?>/registration.php">Add Roomates</a></li>
-                    <li class="active"><a href="<?php echo ASITEURL; ?>/presentation/group.php">Add Groups</a></li>
 
-                </ul>
-            </div>
-         
-            <form class="form-horizontal" role="form" action="../process/group_process.php" method="post">
+<script>
+//    $(document).ready(function(){
+//    $("#showList").click(function(){
+//        $(".form-group").hide();
+//       $.ajax({
+//                type:"GET",
+//                url:"<?php echo ASITEURL; ?>/ajaxCall/groupList.php/getGroupList", 
+//                data:"",
+//                success:function(data1) {
+//                    $("#groupList").html(data1);
+//                }
+//    });
+//   });
+//   });
+</script>
+          <form class="form-horizontal" role="form" action="../process/group_process.php" method="post">
                 <div class="form-group">
                     <label for="Group Name" class="col-sm-3 control-label">Group Name</label>
                     <div class="col-sm-10">
@@ -86,17 +60,16 @@ require "../database/db.php";
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-primary btn-lg">Add</button>
+                        <a href="<?php echo ASITEURL; ?>/list/list_group.php"<button type="button" class="btn btn-primary btn-lg" id="showList">Show List</button></a>
+                    
                     </div>
+              
                 </div>
+              
             </form>
-        </div>
-        
-    </div>
-   
 
-
-</body>
-</html>
+<!--</body>
+</html>-->
 <?php
-
+ require '../template/footer.php';
 ?>
