@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 01, 2014 at 04:38 PM
+-- Generation Time: Jun 01, 2014 at 04:58 PM
 -- Server version: 5.5.11
 -- PHP Version: 5.4.12
 
@@ -41,9 +41,7 @@ CREATE TABLE IF NOT EXISTS `kzygroup` (
 INSERT INTO `kzygroup` (`kzy_GroupId`, `kzy_GroupName`) VALUES
 (14, 'Icecream'),
 (15, 'Default'),
-(16, 'Test'),
-(17, 'Sucker'),
-(18, 'Teeaser');
+(16, 'Test');
 
 -- --------------------------------------------------------
 
@@ -69,10 +67,7 @@ INSERT INTO `kzygrouproommatemapping` (`kzy_GrpRmtMapId`, `kzy_GroupId`, `kzy_Ro
 (7, 15, 8),
 (8, 15, 9),
 (9, 15, 10),
-(10, 16, 1),
-(11, 17, 8),
-(12, 18, 1),
-(13, 18, 11);
+(10, 16, 1);
 
 -- --------------------------------------------------------
 
