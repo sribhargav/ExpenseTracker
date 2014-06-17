@@ -80,21 +80,77 @@ class Roommates {
 }
 
 if (isset($_POST['callType']) && $_POST['callType'] == "ajax") {
-    addRoommate($_POST['kzyRoommateName'], $_POST['kzyRoommateContactNumber'], $_POST['kzyRoommateUsername'], $_POST['kzyRoommatePassword'], 2);
+
+    switch ($_POST['actionType']) {
+        case "insert":
+            addRoommate($_POST['kzyRoommateName'], $_POST['kzyRoommateContactNumber'], $_POST['kzyRoommateUsername'], $_POST['kzyRoommatePassword'], 2);
+            break;
+
+        case "update":
+            updateRoommate($_POST['kzyRoommateId'], $_POST['kzyRoommateName'], $_POST['kzyRoommateContactNumber'], $_POST['kzyRoommateUsername'], $_POST['kzyRoommatePassword']);
+            break;
+
+        case "details":
+            getRoommateById($_POST['roommateId']);
+            break;
+
+        case "delete":
+            deleteRoommate($_POST['roommateId']);
+            break;
+    }
 }
 
 function addRoommate($roommateName, $roommateContactNumber, $roommateUsername, $roommatePassword, $roommateUsertype) {
+
+    $conn = getConnection();
     $query = "INSERT INTO kzyroommates (kzy_RoommateName,kzy_RoommateContactNumber,kzy_username,kzy_password,kzy_UserType) VALUES ('$roommateName', '$roommateContactNumber', '$roommateUsername', '$roommatePassword', $roommateUsertype)";
 
-    if (mysqli_query(getConnection(), $query)) {
+    if (mysqli_query($conn, $query)) {
+
+        $resp["roommateId"] = mysqli_insert_id($conn);
         $resp["status"] = "1";
         $resp["roommateName"] = $roommateName;
         $resp["roommateUsername"] = $roommateUsername;
         $resp["roommateContact"] = $roommateContactNumber;
-        
+
         echo json_encode($resp);
     } else {
-        
+
+        $resp["status"] = "0";
+        echo json_encode($resp);
+    }
+}
+
+function updateRoommate($roommateId, $roommateName, $roommateContactNumber, $roommateUsername, $roommatePassword) {
+
+    $conn = getConnection();
+    $query = "UPDATE kzyroommates set kzy_RoommateName='" . $roommateName . "',kzy_RoommateContactNumber='" . $roommateContactNumber . "',kzy_username='" . $roommateUsername . "',kzy_password='" . $roommatePassword . "' where kzy_RoommateId=" . $roommateId;
+
+    if (mysqli_query($conn, $query)) {
+
+        $resp["roommateId"] = $roommateId;
+        $resp["status"] = "1";
+        $resp["roommateName"] = $roommateName;
+        $resp["roommateUsername"] = $roommateUsername;
+        $resp["roommateContact"] = $roommateContactNumber;
+
+        echo json_encode($resp);
+    } else {
+
+        $resp["status"] = "0";
+        echo json_encode($resp);
+    }
+}
+
+function deleteRoommate($roommateId) {
+    $query = "DELETE FROM kzyroommates where kzy_RoommateId=" . $roommateId;
+
+    if (mysqli_query(getConnection(), $query)) {
+        $resp["status"] = "1";
+
+        echo json_encode($resp);
+    } else {
+
         $resp["status"] = "0";
         echo json_encode($resp);
     }
@@ -115,6 +171,28 @@ function getAllRoommates() {
     }
 
     return $roommatesList;
+}
+
+function getRoommateById($roommateId) {
+
+    $sql = "SELECT * FROM kzyroommates where kzy_RoommateId=" . $roommateId;
+    $query = mysqli_query(getConnection(), $sql);
+
+    $row = mysqli_fetch_assoc($query);
+
+    if (count($row) != 0) {
+        $resp["status"] = "1";
+        $resp["roommateId"] = $row['kzy_RoommateId'];
+        $resp["roommateName"] = $row['kzy_RoommateName'];
+        $resp["roommateUsername"] = $row['kzy_username'];
+        $resp["roommateContact"] = $row['kzy_RoommateContactNumber'];
+        $resp["roommatePassword"] = $row['kzy_password'];
+
+        echo json_encode($resp);
+    } else {
+        $resp["status"] = "0";
+        echo json_encode($resp);
+    }
 }
 
 ?>
